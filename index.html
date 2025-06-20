@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mistral Devstral Chat</title>
+  <title>Mistral Chat (OpenRouter)</title>
   <style>
-    body { background: #002200; color: white; font-family: sans-serif; padding: 20px; }
-    #chat { white-space: pre-wrap; border: 1px solid #00cc00; padding: 10px; min-height: 200px; margin-bottom: 10px; }
-    input, button { padding: 10px; font-size: 16px; }
-    input { width: 70%; }
-    button { background-color: #00cc00; color: white; border: none; cursor: pointer; }
-    button:hover { background-color: #009900; }
+    body { background-color: #001f00; color: white; font-family: sans-serif; padding: 20px; }
+    #chat { background: #003300; border-radius: 10px; padding: 15px; min-height: 200px; margin-bottom: 10px; white-space: pre-wrap; }
+    input, button { padding: 10px; font-size: 16px; border-radius: 8px; }
+    input { width: 70%; border: none; }
+    button { background-color: #00cc44; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #009933; }
   </style>
 </head>
 <body>
-  <h2>🤖 Mistral Devstral Chat (OpenRouter арқылы)</h2>
-  <div id="chat"></div>
-  <input id="userInput" type="text" placeholder="Хабарлама жаз..." />
+  <h2>🤖 Mistral Chat (OpenRouter арқылы)</h2>
+  <div id="chat">Сәлем! Менімен сөйлесе бер! 😊</div>
+  <input id="userInput" type="text" placeholder="Сұрағыңды жаз..." />
   <button onclick="send()">Жіберу</button>
 
   <script>
@@ -23,18 +23,28 @@
       const chat = document.getElementById("chat");
       if (!input) return;
 
-      chat.innerText += "🧑: " + input + "\n";
-      document.getElementById("userInput").value = "";
+      chat.innerText += "\n🧑: " + input;
 
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer YOUAPIKEY", // ← Мына жерге өз OpenRouter API кілтіңді қой
+          "Authorization": "Bearer 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",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "mistralai/devstral-small:free", // ← Сен таңдаған тегін модель
+          model: "mistralai/devstral-small:free",
           messages: [{ role: "user", content: input }]
+        })
+      });
+
+      const data = await response.json();
+      const reply = data.choices?.[0]?.message?.content || "⚠️ Қате шықты...";
+      chat.innerText += "\n🤖: " + reply + "\n";
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+</body>
+</html>          messages: [{ role: "user", content: input }]
         })
       });
 
