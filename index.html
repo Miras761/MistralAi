@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mistral Chat</title>
+  <title>Mistral Devstral Chat</title>
   <style>
-    body { background: #003300; color: white; font-family: sans-serif; padding: 20px; }
-    #chat { white-space: pre-wrap; border: 1px solid #fff; padding: 10px; min-height: 200px; margin-bottom: 10px; }
+    body { background: #002200; color: white; font-family: sans-serif; padding: 20px; }
+    #chat { white-space: pre-wrap; border: 1px solid #00cc00; padding: 10px; min-height: 200px; margin-bottom: 10px; }
     input, button { padding: 10px; font-size: 16px; }
     input { width: 70%; }
-    button { background-color: #00aa00; color: white; border: none; cursor: pointer; }
-    button:hover { background-color: #008800; }
+    button { background-color: #00cc00; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #009900; }
   </style>
 </head>
 <body>
-  <h2>🤖 Mistral Chat (OpenRouter арқылы)</h2>
+  <h2>🤖 Mistral Devstral Chat (OpenRouter арқылы)</h2>
   <div id="chat"></div>
   <input id="userInput" type="text" placeholder="Хабарлама жаз..." />
   <button onclick="send()">Жіберу</button>
@@ -29,11 +29,11 @@
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": "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", // ← Мына жерге OpenRouter кілтіңді қой
+          "Authorization": "Bearer YOUAPIKEY", // ← Мына жерге өз OpenRouter API кілтіңді қой
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "mistralai/mistral-7b-instruct",
+          model: "mistralai/devstral-small:free", // ← Сен таңдаған тегін модель
           messages: [{ role: "user", content: input }]
         })
       });
