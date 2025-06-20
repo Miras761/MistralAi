@@ -1,0 +1,37 @@
+body {
+  background-color: #002200;
+  color: white;
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+#chat {
+  background: #003300;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 200px;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+input {
+  width: 70%;
+  border: none;
+}
+
+button {
+  background-color: #00cc44;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #009933;
+}
